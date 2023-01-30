@@ -100,7 +100,7 @@ const reviewUpdate = async function (req, res) {
                     reviewData["reviewedBy"] = reviewedBy
                 }
 
-                let updatedReviewData = await reviewModel.findByIdAndUpdate({ _id: checkReview._id }, { new: true })
+                let updatedReviewData = await reviewModel.findByIdAndUpdate({ _id: checkReview._id },req.body, { new: true })
                 return res.status(200).send({ status: false, message: "Success", data: updatedReviewData })
 
             }

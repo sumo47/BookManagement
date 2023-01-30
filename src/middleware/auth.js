@@ -29,13 +29,15 @@ const authenticate = function (req, res, next) {
 }
 
 // <<<<<<<<<----------------------Authorisation------------------------------->>>>>>>>>>>>>
+
+
 const authorization = async function (req, res, next) {
     try {
+
         let data = req.body
-        if (Object.keys(data).length === 0) return res.status(400).send({ status: false, msg: "Please enter some data" })
-        let { userId } = data
-        if (userId) {
-            if (!mongoose.Types.ObjectId.isValid(userId)) {
+        if (Object.keys(data).length > 0) {
+            let { userId } = data
+            if (!mongoose.isValidObjectId(userId)) {
                 return res.status(400).send({ status: false, message: "Please enter valid userId" })
             }
             const findUser = await userModel.findById(userId.trim())
@@ -48,6 +50,8 @@ const authorization = async function (req, res, next) {
         }
         else {
             let bookId = req.params.bookId
+            if(!mongoose.isValidObjectId(bookId)) return res.status(400).send({status:false, msg:"enter valid bookId"})
+
             let checkAuth = await bookModel.findOne({ _id: bookId })
             if (checkAuth === null) return res.status(400).send({ status: false, msg: "Not find any book" })
             if (checkAuth.userId != req.loginUserId) {

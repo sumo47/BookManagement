@@ -7,7 +7,7 @@ const { isValidObjectId } = require("mongoose")
 
 // <<<<<<<<<<<----------------------------Create User(Post api)----------------------------->>>>>>>>>>
 // <<<<<<<++++++++++++++++++++++++This Api is used to Create a Book+++++++++++++++++++++++++++>>>>>>>>>>>>
-
+// isbn and title alag alag krna h
 const createBook = async (req, res) => {
     try {
         let data = req.body
@@ -203,6 +203,7 @@ const updateBooksbyId = async (req, res) => {
 // <<<<<<<<<<<---------------------------------Delete Book(Delete Api)----------------------------------->>>>>>>>>>
 // <<<<<<<++++++++++++++++++++++++++This Api is used to Delete a book by BookId+++++++++++++++++++++++>>>>>>>>>>>>
 
+//! GUYS APNE APNE CODE ME SAHI KRRO PULL KRKE , JISKA SAHI HO JAYEGA BATA DENA
 const deleteBooks = async function (req, res) {
     try {
         let bookId = req.params.bookId;
